@@ -1,6 +1,6 @@
 import { Button, Layout, theme, Tooltip } from "antd";
 import { styles } from "./styles";
-import { useThemeStore } from "~/stores/theme/themeStore";
+import { useThemeStore } from "~/stores/theme/useThemeStore";
 import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 
 const { Header } = Layout;

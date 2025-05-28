@@ -1,6 +1,5 @@
 import { FC } from "react";
 import App from "./App";
-import { ThemeStoreProvider } from "./stores/theme/themeStore";
 import { BrowserRouter } from "react-router-dom";
 import "./styles/index.css";
 const composeProviders =
@@ -11,7 +10,7 @@ const composeProviders =
       (acc, Provider) => <Provider>{acc}</Provider>,
       <Child {...props} />
     );
-const WrappedApp = composeProviders(ThemeStoreProvider)(App);
+const WrappedApp = composeProviders()(App);
 
 const AppRoot: FC = () => {
   return (
