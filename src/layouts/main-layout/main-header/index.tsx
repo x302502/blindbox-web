@@ -24,7 +24,6 @@ export const MainHeader = () => {
       }}
     >
       <div style={{ fontWeight: "bold" }}>📈 PRE-MARKET DASHBOARD</div>
-
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <Connector
           modalProps={{

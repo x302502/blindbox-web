@@ -9,9 +9,11 @@ import {
   OkxWallet,
   WagmiWeb3ConfigProvider,
 } from "@ant-design/web3-wagmi";
-import { ChainType } from "@ant-design/web3";
+import { ChainType, Web3ConfigProvider } from "@ant-design/web3";
+import HomePage from "./pages/home";
+import LootBox from "./components/LootBox/LootBox";
 
-function App() {
+const App: React.FC = () => {
   const { themConfig } = useThemeStore();
   return (
     <ConfigProvider
@@ -19,23 +21,19 @@ function App() {
         ...themConfig,
       }}
     >
-      <WagmiWeb3ConfigProvider
-        eip6963={{
-          autoAddInjectedWallets: true,
+      <Web3ConfigProvider
+        theme={{
+          ...themConfig,
         }}
-        ens
-        wallets={[MetaMask(), CoinbaseWallet(), OkxWallet()]}
-        chains={[
-          {
-            id: 10143,
-            name: "Monad testnet",
-            nativeCurrency: {
-              name: "MON",
-              symbol: "MON",
-              decimals: 18,
-            },
-            type: ChainType.EVM,
-            wagmiChain: {
+      >
+        <WagmiWeb3ConfigProvider
+          eip6963={{
+            autoAddInjectedWallets: true,
+          }}
+          ens
+          wallets={[MetaMask(), CoinbaseWallet(), OkxWallet()]}
+          chains={[
+            {
               id: 10143,
               name: "Monad testnet",
               nativeCurrency: {
@@ -43,31 +41,41 @@ function App() {
                 symbol: "MON",
                 decimals: 18,
               },
-              rpcUrls: {
-                default: {
-                  http: [
-                    "https://monad-testnet.drpc.org",
-                    "https://testnet-rpc.monad.xyz",
-                  ],
-                  webSocket: ["wss://monad-testnet.drpc.org"],
+              type: ChainType.EVM,
+              wagmiChain: {
+                id: 10143,
+                name: "Monad testnet",
+                nativeCurrency: {
+                  name: "MON",
+                  symbol: "MON",
+                  decimals: 18,
                 },
-              },
-              blockExplorers: {
-                default: {
-                  name: "SocialScan",
-                  url: "https://monad-testnet.socialscan.io",
+                rpcUrls: {
+                  default: {
+                    http: [
+                      "https://monad-testnet.drpc.org",
+                      "https://testnet-rpc.monad.xyz",
+                    ],
+                    webSocket: ["wss://monad-testnet.drpc.org"],
+                  },
+                },
+                blockExplorers: {
+                  default: {
+                    name: "SocialScan",
+                    url: "https://monad-testnet.socialscan.io",
+                  },
                 },
               },
             },
-          },
-        ]}
-      >
-        <MainLayout>
-          <DemoPage />
-        </MainLayout>
-      </WagmiWeb3ConfigProvider>
+          ]}
+        >
+          <MainLayout>
+            <LootBox />
+          </MainLayout>
+        </WagmiWeb3ConfigProvider>
+      </Web3ConfigProvider>
     </ConfigProvider>
   );
-}
+};
 
 export default App;
