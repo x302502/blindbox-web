@@ -2,6 +2,7 @@ import { FC } from "react";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import "./styles/index.css";
+
 const composeProviders =
   (...providers: any[]) =>
   (Child: any) =>
